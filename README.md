@@ -12,6 +12,8 @@ cd cold-turkey-blocker-pro
 Get-Content .\cold-turkey-pro.sql | sqlite3 "C:\ProgramData\Cold Turkey\data-app.db"
 
 # restart cold turkey blocker pro
-Get-Process "Cold Turkey Blocker" | Stop-Process -Force
-Start-Process -FilePath "C:\Program Files\Cold Turkey\Cold Turkey Blocker.exe"
+$proc = Get-Process "Cold Turkey Blocker"
+$exe = $proc | Select-Object -Expand Path
+$proc | Stop-Process -Force
+Start-Process -FilePath $exe
 ```
